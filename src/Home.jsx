@@ -1,39 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
-  ChevronDown,
-  Camera,
   Music,
-  Video,
-  Coffee,
-  Scissors,
-  Sun,
-  Star,
-  MapPin,
+  House,
+  Edit2,
+  ComputerIcon,
   ArrowRight,
-  Clapperboard,
-  Mic2,
-  Wine,
-  Ticket,
-  Info,
-  Palette,
-  Layers,
-  Instagram,
-  Mail,
   Check,
   Film,
-  Mic,
   PersonStandingIcon,
-  House,
-  Edit,
-  Edit2,
-  Computer,
-  ComputerIcon,
-  Hotel,
-  Images,
+  Instagram,
+  Mail,
 } from "lucide-react";
 
 export default function Home() {
+  const base = import.meta.env.BASE_URL;
   const [activeDay, setActiveDay] = useState(1);
+  const [selectedTicketDay, setSelectedTicketDay] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -41,49 +24,26 @@ export default function Home() {
   }, []);
 
   const logos = {
-    main: "/logobig.svg",
-    nav: "/logoshort.svg",
-    seal: "/logocool.svg",
+    main: `${base}logobig.svg`,
+    nav: `${base}logoshort.svg`,
+    seal: `${base}logocool.svg`,
   };
 
-  const ticketOptions = [
+  // New data structure for visual tickets
+  const visualTickets = [
     {
-      name: "The Day Tripper",
-      price: "35",
-      desc: "Perfect for a curious afternoon of cinema and one ground-floor workshop.",
-      features: [
-        "Single Day Access",
-        "1 Workshop Voucher",
-        "Festival Program Booklet",
-        "Complimentary Mendl's Pastry",
-      ],
-      highlight: false,
+      id: "1day",
+      image: `${base}/tickets/ticket_day${selectedTicketDay}.png`,
+      name: "1 - DAY TICKET",
+      price: "€59,99",
+      isSelectable: true,
     },
     {
-      name: "The Full Suite",
-      price: "95",
-      desc: "Our most popular choice. Full access to all three days and all workshop floors.",
-      features: [
-        "3-Day Priority Pass",
-        "Unlimited Workshop Access",
-        "Opening Night Gala Entry",
-        "Limited Edition Poster",
-        "Character Photoshoot",
-      ],
-      highlight: true,
-    },
-    {
-      name: "The Director's Box",
-      price: "250",
-      desc: "For the ultimate enthusiast. Everything included plus private sessions.",
-      features: [
-        "VIP Seating in all Screens",
-        "Private Mentor Meet & Greet",
-        "Curated Gift Trunk",
-        "Reserved Rooftop Dining",
-        "Fast-track Entry",
-      ],
-      highlight: false,
+      id: "3day",
+      image: `${base}/tickets/ticket_3days.png`,
+      name: "3 - DAYS TICKET",
+      price: "€149,86",
+      isSelectable: false,
     },
   ];
 
@@ -116,7 +76,7 @@ export default function Home() {
       {
         time: "17:45 - 19:45",
         title: "Film: The Grand Budapest Hotel",
-        loc: "?",
+        loc: "Outside - Market Square",
         icon: <Film size={16} />,
       },
     ],
@@ -148,7 +108,7 @@ export default function Home() {
       {
         time: "17:45 - 19:45",
         title: "Film: Fantastic Mr. Fox",
-        loc: "?",
+        loc: "Outside - Market Square",
         icon: <Film size={16} />,
       },
     ],
@@ -180,7 +140,7 @@ export default function Home() {
       {
         time: "17:45 - 19:45",
         title: "Film: The Phoenician",
-        loc: "?",
+        loc: "Outside - Market Square",
         icon: <Film size={16} />,
       },
     ],
@@ -204,10 +164,10 @@ export default function Home() {
         },
       ],
       images: [
-        "/workshop1_1.png",
-        "/workshop1_6.png",
-        "/workshop1_5.png",
-        "/workshop1_4.png",
+        `${base}/workshop1/Poppen_Details.png`,
+        `${base}/workshop1/Poppen_Handelingen.png`,
+        `${base}/workshop1/Poppen_Resultaat.png`,
+        `${base}/workshop1/Poppen_Wideshot2.png`,
       ],
     },
     {
@@ -227,10 +187,10 @@ export default function Home() {
         },
       ],
       images: [
-        "/workshop2_1.png",
-        "/workshop2_2.png",
-        "/workshop2_3.png",
-        "/workshop2_4.png",
+        `${base}/workshop2/Verfijning_Miniatuur.png`,
+        `${base}/workshop2/Miniatuur_MetCamera.png`,
+        `${base}/workshop2/Autotje_Greenscreen.png`,
+        `${base}/workshop2/Gemini_Generated_Image_hhlrqvhhlrqvhhlr.png`,
       ],
     },
     {
@@ -250,10 +210,8 @@ export default function Home() {
         },
       ],
       images: [
-        "/workshop3_1.jpeg",
-        "/workshop3_2.jpeg",
-        "/workshop3_3.jpeg",
-        "/workshop3_1.jpeg",
+        `${base}/workshop3/Stopmotion_closeup.png`,
+        `${base}/workshop3/Stopmotion_Establishing.png`,
       ],
     },
     {
@@ -273,10 +231,9 @@ export default function Home() {
         },
       ],
       images: [
-        "/workshop4_1.png",
-        "/workshop4_2.png",
-        "/workshop4_3.png",
-        "/workshop4_1.png",
+        `${base}/workshop4/FoleyStudio_Closeup.png`,
+        `${base}/workshop4/Foleystudio_Closeup2.png`,
+        `${base}/workshop4/FoleyStudio.png`,
       ],
     },
     {
@@ -296,10 +253,10 @@ export default function Home() {
         },
       ],
       images: [
-        "/workshop5_1.jpg",
-        "/workshop5_2.jpg",
-        "/workshop5_3.jpg",
-        "/workshop5_1.jpg",
+        `${base}/workshop5/Filmmakingstudy_computers.png`,
+        `${base}/workshop5/Filmmakingstudy_Sets&Greenscreen.png`,
+        `${base}/workshop5/Filmmakingstudy_Sets.png`,
+        `${base}/workshop5/Filmmakingstudy_Sets2.png`,
       ],
     },
   ];
@@ -325,8 +282,6 @@ export default function Home() {
       {/* 1. UPDATED MARQUEE BANNER */}
       <nav className="bg-[#CA292A] text-[#F0C6D4] py-3 border-b-4 border-[#F0C6D4] fixed top-0 w-full z-100 shadow-lg overflow-hidden flex items-center">
         <div className="animate-marquee-infinite">
-          {/* We repeat the text and use two identical spans. 
-              The 'scroll' animation moves 50%, so the second span perfectly replaces the first. */}
           <span className="font-sans-custom text-[11px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
             {bannerText.repeat(4)}
           </span>
@@ -339,10 +294,17 @@ export default function Home() {
       {/* 2. HERO SECTION */}
       <header className="pt-48 pb-32 text-center border-b-2 border-[#CA292A] paper-texture bg-[#F0C6D4]">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center">
+          {/* UPDATED: STYLED FEED BUTTON */}
+          <Link
+            to="/feed"
+            className="mb-8 inline-block px-8 py-3 border-2 border-[#CA292A] bg-white text-[#CA292A] font-sans-custom font-bold uppercase tracking-[0.2em] text-xs hover:bg-[#CA292A] hover:text-[#F0C6D4] transition-all shadow-[4px_4px_0px_#CA292A] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#CA292A]">
+            View Feed
+          </Link>
+
           <img
             src={logos.main}
             alt="WesFest Logo"
-            className="w-full max-w-[600px] h-auto mb-12 drop-shadow-sm"
+            className="w-full max-w-150 h-auto mb-12 drop-shadow-sm"
           />
           <div className="w-px h-16 bg-[#CA292A] my-8"></div>
           <div className="flex flex-wrap justify-center gap-8 font-sans-custom text-xs font-bold uppercase tracking-widest text-[#CA292A]">
@@ -370,18 +332,21 @@ export default function Home() {
               The Daily Program
             </h3>
             <div className="flex justify-center items-center gap-6">
-              {[1, 2, 3].map((d) => (
-                <button
-                  key={d}
-                  onClick={() => setActiveDay(d)}
-                  className={`relative px-10 py-4 font-sans-custom text-[11px] font-black uppercase tracking-[0.2em] border-2 border-[#CA292A] transition-all duration-200 ${
-                    activeDay === d
-                      ? "bg-[#CA292A] text-[#F0C6D4] translate-x-[4px] translate-y-[4px]"
-                      : "bg-white text-[#CA292A] shadow-[6px_6px_0px_#CA292A] hover:bg-[#F0C6D4]"
-                  }`}>
-                  Day 0{d}
-                </button>
-              ))}
+              {[1, 2, 3].map((d) => {
+                const dates = { 1: "29.07", 2: "30.07", 3: "31.07" };
+                return (
+                  <button
+                    key={d}
+                    onClick={() => setActiveDay(d)}
+                    className={`relative px-10 py-4 font-sans-custom text-[11px] font-black uppercase tracking-[0.2em] border-2 border-[#CA292A] transition-all duration-200 ${
+                      activeDay === d
+                        ? "bg-[#CA292A] text-[#F0C6D4] translate-x-[4px] translate-y-[4px]"
+                        : "bg-white text-[#CA292A] shadow-[6px_6px_0px_#CA292A] hover:bg-[#F0C6D4]"
+                    }`}>
+                    {dates[d]}
+                  </button>
+                );
+              })}
             </div>
           </div>
           <div className="border-2 border-[#CA292A] bg-white bg-opacity-60 divide-y-2 divide-[#CA292A] shadow-[12px_12px_0px_#CA292A]">
@@ -409,139 +374,166 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. FLOOR SECTIONS (UPDATED: 50/50 Split) */}
-      {floors.map((floor) => (
-        <section
-          id={`floor-${floor.id}`}
-          key={floor.id}
-          className={`${floor.theme} paper-texture p-3 border-b-2 border-[#CA292A] relative overflow-hidden`}>
-          {/* Main Container - 50/50 Split using grid-cols-2 */}
-          <div className="grid lg:grid-cols-2 w-full min-h-150">
-            {/* CONTENT COLUMN (50%) */}
-            <div className="p-12 lg:p-24 flex flex-col justify-center border-opacity-20">
-              <p className="font-sans-custom text-xs font-black uppercase tracking-[0.5em] mb-4 opacity-60">
-                Archive {floor.id}
-              </p>
-              <h2 className="font-serif-custom text-5xl mb-6 text-[#CA292A] leading-tight">
-                {floor.name}
-              </h2>
-              <p className="font-serif-custom italic text-xl mb-12 opacity-80">
-                {floor.subtitle}
-              </p>
-              <div className="space-y-6">
-                {floor.workshops.map((ws, i) => (
-                  <div
-                    key={i}
-                    className={`p-8 border-2 ${floor.cardStyle} rounded-sm shadow-sm hover:shadow-lg transition-all duration-500 group/card`}>
-                    <h4 className="font-serif-custom text-2xl mb-3">
-                      {ws.title}
-                    </h4>
-                    <p className="font-sans-custom text-[9px] font-bold uppercase tracking-widest mb-3 opacity-70">
-                      Focus: {ws.topics}
-                    </p>
-                    <p className="font-sans-custom text-sm mb-6 leading-relaxed opacity-90">
-                      {ws.description}
-                    </p>
-                    <div className="flex justify-between items-center pt-4 border-t border-[#CA292A] border-opacity-20 text-[9px] font-black uppercase tracking-widest">
-                      <span>{ws.details}</span>
-                      <ArrowRight
-                        size={16}
-                        className="group-hover/card:translate-x-2 transition-transform"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* 4. FLOOR SECTIONS */}
+      {floors.map((floor) => {
+        // HELPER VARIABLE: Count how many images there are
+        const images = floor.images || floor.collageColors || [];
+        const count = images.length;
 
-            {/* IMAGE GRID COLUMN (50%) */}
-            <div className="w-full h-full lg:max-h-220">
-              <div className="grid grid-cols-6 h-full w-full">
-                {(floor.images || floor.collageColors).map((item, ci) => {
-                  let spanClass = "";
-                  if (ci === 0) spanClass = "col-span-4";
-                  else if (ci === 1) spanClass = "col-span-2";
-                  else if (ci === 2) spanClass = "col-span-3";
-                  else spanClass = "col-span-3";
-
-                  return (
+        return (
+          <section
+            id={`floor-${floor.id}`}
+            key={floor.id}
+            className={`${floor.theme} paper-texture p-3 border-b-2 border-[#CA292A] relative overflow-hidden`}>
+            <div className="grid lg:grid-cols-2 w-full min-h-150">
+              <div className="p-12 lg:p-24 flex flex-col justify-center border-opacity-20">
+                <p className="font-sans-custom text-xs font-black uppercase tracking-[0.5em] mb-4 opacity-60">
+                  Archive {floor.id}
+                </p>
+                <h2 className="font-serif-custom text-5xl mb-6 text-[#CA292A] leading-tight">
+                  {floor.name}
+                </h2>
+                <p className="font-serif-custom italic text-xl mb-12 opacity-80">
+                  {floor.subtitle}
+                </p>
+                <div className="space-y-6">
+                  {floor.workshops.map((ws, i) => (
                     <div
-                      key={ci}
-                      className={`${spanClass} relative overflow-hidden border-l border-b border-[#CA292A] border-opacity-10 group/img min-h-75`}
-                      style={!floor.images ? { backgroundColor: item } : {}}>
-                      {floor.images ? (
-                        <img
-                          src={item}
-                          alt={`Workshop ${ci}`}
-                          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-1000"
+                      key={i}
+                      className={`p-8 border-2 ${floor.cardStyle} rounded-sm shadow-sm hover:shadow-lg transition-all duration-500 group/card`}>
+                      <h4 className="font-serif-custom text-2xl mb-3">
+                        {ws.title}
+                      </h4>
+                      <p className="font-sans-custom text-[9px] font-bold uppercase tracking-widest mb-3 opacity-70">
+                        Focus: {ws.topics}
+                      </p>
+                      <p className="font-sans-custom text-sm mb-6 leading-relaxed opacity-90">
+                        {ws.description}
+                      </p>
+                      <div className="flex justify-between items-center pt-4 border-t border-[#CA292A] border-opacity-20 text-[9px] font-black uppercase tracking-widest">
+                        <span>{ws.details}</span>
+                        <ArrowRight
+                          size={16}
+                          className="group-hover/card:translate-x-2 transition-transform"
                         />
-                      ) : (
-                        <div className="w-full h-full group-hover/img:scale-105 transition-transform duration-1000"></div>
-                      )}
-                      <div className="absolute inset-0 bg-black opacity-10 group-hover/img:opacity-0 transition-opacity duration-500"></div>
+                      </div>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
+              </div>
+
+              {/* DYNAMIC GRID LOGIC */}
+              <div className="w-full h-full lg:max-h-220">
+                <div
+                  className={`grid h-full w-full ${
+                    count === 4 ? "grid-cols-6" : "grid-cols-2"
+                  }`}>
+                  {images.map((item, ci) => {
+                    let spanClass = "";
+
+                    // LOGIC A: EXACTLY 4 PHOTOS (Your old layout)
+                    if (count === 4) {
+                      if (ci === 0) spanClass = "col-span-4";
+                      else if (ci === 1) spanClass = "col-span-2";
+                      else if (ci === 2) spanClass = "col-span-3";
+                      else spanClass = "col-span-3";
+                    }
+                    // LOGIC B: OTHER AMOUNT (Flexible layout)
+                    else {
+                      if (count === 1) {
+                        // 1 photo: Fills everything
+                        spanClass = "col-span-2 row-span-2";
+                      } else if (count === 3 && ci === 0) {
+                        // 3 photos: First is wide, other two next to/below
+                        spanClass = "col-span-2";
+                      } else {
+                        // Default behavior (e.g. with 2 photos): 50/50
+                        spanClass = "col-span-1";
+                      }
+                    }
+
+                    return (
+                      <div
+                        key={ci}
+                        className={`${spanClass} relative overflow-hidden border-l border-b border-[#CA292A] border-opacity-10 group/img min-h-75`}
+                        style={!floor.images ? { backgroundColor: item } : {}}>
+                        {floor.images ? (
+                          <img
+                            src={item}
+                            alt={`Workshop ${ci}`}
+                            className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-1000"
+                          />
+                        ) : (
+                          <div className="w-full h-full group-hover/img:scale-105 transition-transform duration-1000"></div>
+                        )}
+                        <div className="absolute inset-0 bg-black opacity-10 group-hover/img:opacity-0 transition-opacity duration-500"></div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        );
+      })}
 
-      {/* 5. TICKETS */}
+      {/* 5. UPDATED TICKETS SECTION */}
       <section
         id="tickets"
         className="py-32 px-6 bg-[#F2E8D5] border-b-2 border-[#CA292A] paper-texture">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <p className="font-sans-custom text-[10px] font-black uppercase tracking-[0.5em] mb-4 text-[#CA292A]">
             The Admission Bureau
           </p>
           <h2 className="font-serif-custom text-6xl text-[#CA292A] mb-20 italic">
             Acquire Entry
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {ticketOptions.map((tier, i) => (
-              <div
-                key={i}
-                className={`relative p-8 border-2 border-[#CA292A] bg-white flex flex-col transition-all duration-500 hover:-translate-y-4 ${
-                  tier.highlight
-                    ? "scale-105 z-10 shadow-[10px_10px_0px_#CA292A]"
-                    : "shadow-[5px_5px_0px_#CA292A]"
-                }`}>
-                {tier.highlight && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#CA292A] text-[#F0C6D4] px-4 py-1 font-sans-custom text-[9px] font-black uppercase tracking-widest">
-                    Highly Recommended
+
+          {/* Grid for the 2 new tickets */}
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start justify-center">
+            {visualTickets.map((ticket) => (
+              <div key={ticket.id} className="flex flex-col items-center group">
+                {/* De Ticket Image */}
+                <div className="relative mb-10 w-full max-w-lg transition-transform duration-500 hover:rotate-1 hover:scale-[1.02] drop-shadow-[10px_10px_15px_rgba(0,0,0,0.15)]">
+                  <img
+                    src={ticket.image}
+                    alt={ticket.name}
+                    className="w-full h-auto rounded-sm"
+                  />
+                </div>
+
+                {/* Date Selection for 1-day ticket */}
+                {ticket.isSelectable && (
+                  <div className="mb-6 w-full max-w-sm">
+                    <p className="font-sans-custom text-[10px] font-bold uppercase tracking-[0.2em] mb-3 text-[#CA292A]">
+                      Select Date
+                    </p>
+                    <div className="flex justify-center gap-3">
+                      {[1, 2, 3].map((day) => {
+                        const dates = { 1: "29.07", 2: "30.07", 3: "31.07" };
+                        return (
+                          <button
+                            key={day}
+                            onClick={() => setSelectedTicketDay(day)}
+                            className={`px-6 py-2 font-sans-custom text-[10px] font-black uppercase tracking-[0.2em] border-2 border-[#CA292A] transition-all duration-200 ${
+                              selectedTicketDay === day
+                                ? "bg-[#CA292A] text-[#F0C6D4] translate-x-[2px] translate-y-[2px]"
+                                : "bg-white text-[#CA292A] shadow-[4px_4px_0px_#CA292A] hover:bg-[#F2E8D5]"
+                            }`}>
+                            {dates[day]}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
-                <h4 className="font-serif-custom text-3xl text-[#CA292A] mb-2">
-                  {tier.name}
-                </h4>
-                <div className="flex items-baseline gap-1 mb-6 border-b-2 border-[#CA292A] border-dotted pb-6">
-                  <span className="font-sans-custom text-2xl font-bold text-[#CA292A]">
-                    $
-                  </span>
-                  <span className="font-serif-custom text-6xl font-black text-[#CA292A]">
-                    {tier.price}
-                  </span>
-                </div>
-                <ul className="space-y-4 mb-10 flex-grow">
-                  {tier.features.map((feat, fi) => (
-                    <li
-                      key={fi}
-                      className="flex items-start gap-3 text-xs font-sans-custom font-bold uppercase tracking-wider text-[#CA292A] text-left">
-                      <Check size={14} className="shrink-0 mt-0.5" />
-                      {feat}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className={`w-full py-4 font-sans-custom font-black uppercase text-[11px] tracking-[0.2em] border-2 border-[#CA292A] transition-all ${
-                    tier.highlight
-                      ? "bg-[#CA292A] text-white"
-                      : "hover:bg-[#CA292A] hover:text-white"
-                  }`}>
-                  Purchase Passage
-                </button>
+
+                {/* Purchase Button */}
+                <Link
+                  to="#"
+                  className="w-full max-w-sm py-4 bg-[#CA292A] text-[#F0C6D4] font-sans-custom font-black uppercase text-[12px] tracking-[0.2em] border-2 border-[#CA292A] hover:bg-white hover:text-[#CA292A] transition-all shadow-[6px_6px_0px_#CA292A] hover:shadow-[3px_3px_0px_#CA292A] hover:translate-x-[3px] hover:translate-y-[3px]">
+                  BUY {ticket.name} • {ticket.price}
+                </Link>
               </div>
             ))}
           </div>

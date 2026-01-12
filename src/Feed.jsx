@@ -15,26 +15,33 @@ import {
   Grid3X3,
   List,
 } from "lucide-react";
-import { image } from "framer-motion/client";
 
 export default function Feed() {
+  const base = import.meta.env.BASE_URL;
   const [activeDay, setActiveDay] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // --- LOGO PATHS ---
   const logos = {
-    nav: "/logoshort.svg",
-    seal: "/logocool.svg",
+    nav: `${base}logoshort.svg`,
+    seal: `${base}logocool.svg`,
   };
 
-  const images = {
-    imageone: "/workshop1_3.png",
-    imagetwo: "/workshop2_3.png",
-    imagethree: "/workshop3_1.jpeg",
-    imagefour: "/workshop4_1.png",
-    imagefive: "/workshop5_1.jpg",
-    placeholder: "/placeholder.png",
-  };
+  // Use actual workshop images from public folder
+  const workshopImages = [
+    `${base}workshop1/Poppen_Details.png`,
+    `${base}workshop1/Poppen_Resultaat.png`,
+    `${base}workshop1/Poppen_Wideshot.png`,
+    `${base}workshop2/Verfijning_Miniatuur.png`,
+    `${base}workshop2/Miniatuur_MetCamera.png`,
+    `${base}workshop2/Autotje_Greenscreen.png`,
+    `${base}workshop3/Stopmotion_closeup.png`,
+    `${base}workshop3/Stopmotion_Establishing.png`,
+    `${base}workshop4/FoleyStudio_Closeup.png`,
+    `${base}workshop4/FoleyStudio.png`,
+    `${base}workshop5/Filmmakingstudy_computers.png`,
+    `${base}workshop5/Filmmakingstudy_Sets.png`,
+  ];
 
   // --- DATA GENERATION ---
   // We define the base 6 templates, then programmatically generate a longer list
@@ -80,16 +87,12 @@ export default function Feed() {
   // Function to generate a static list of 24 items
   const generateFeed = () => {
     let feed = [];
-    // Get image keys excluding placeholder for randomization
-    const imageKeys = Object.keys(images).filter(
-      (key) => key !== "placeholder"
-    );
     // Loop 4 times to create 24 items (6 templates * 4)
     for (let i = 0; i < 4; i++) {
       const batch = baseTemplates.map((template, index) => {
-        // Randomly select an image key
-        const randomImageKey =
-          imageKeys[Math.floor(Math.random() * imageKeys.length)];
+        // Randomly select a workshop image
+        const randomImage =
+          workshopImages[Math.floor(Math.random() * workshopImages.length)];
         return {
           ...template,
           // Create a unique ID based on the batch and index
@@ -98,7 +101,7 @@ export default function Feed() {
           likes: Math.floor(Math.random() * 500) + 40,
           liked: false,
           // Assign the random image
-          image: images[randomImageKey],
+          image: randomImage,
         };
       });
       feed = [...feed, ...batch];
@@ -172,79 +175,85 @@ export default function Feed() {
 
   return (
     <div
-      className={`min-h-screen bg-[#F2E8D5] transition-opacity duration-700 ${
+      className={`min-h-screen bg-[#F0C6D4] transition-opacity duration-700 ${
         isLoaded ? "opacity-100" : "opacity-0"
       }`}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;700&family=Jost:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;700&family=Jost:ital,wght@0,400;0,700;0,900;1,400&display=swap');
         .font-serif-custom { font-family: 'Roboto Slab', serif; }
         .font-sans-custom { font-family: 'Jost', sans-serif; }
         .paper-texture { background-image: url("https://www.transparenttextures.com/patterns/p6.png"); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        .animate-marquee { display: flex; width: max-content; animation: scroll 50s linear infinite; }
       `}</style>
 
       {/* TOP NAV BAR */}
-      <nav className="bg-[#CA292A] text-[#F0C6D4] py-2 fixed top-0 w-full z-[110] border-b border-[#F0C6D4] overflow-hidden">
+      <nav className="bg-[#CA292A] text-[#F0C6D4] py-3 border-b-4 border-[#F0C6D4] fixed top-0 w-full z-50 shadow-lg overflow-hidden flex items-center">
         <div className="animate-marquee">
-          <span className="font-sans-custom text-[9px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
-            {" • THE WESFEST DISPATCH • OFFICIAL CORRESPONDENCE • ".repeat(20)}
+          <span className="font-sans-custom text-[11px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
+            {" • THE WESFEST DISPATCH • OFFICIAL CORRESPONDENCE • ".repeat(4)}
+          </span>
+          <span className="font-sans-custom text-[11px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
+            {" • THE WESFEST DISPATCH • OFFICIAL CORRESPONDENCE • ".repeat(4)}
           </span>
         </div>
       </nav>
 
       {/* STICKY HEADER */}
-      <div className="fixed top-[33px] md:top-[37px] w-full z-[100] bg-white border-b-2 border-[#CA292A] h-14 flex items-center px-4 md:px-6 paper-texture">
+      <div className="fixed top-[37px] md:top-[41px] w-full z-40 bg-white border-b-2 border-[#CA292A] h-16 flex items-center px-4 md:px-6">
         <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group">
             <img
               src={logos.nav}
               alt="WesFest Badge"
-              className="w-8 h-8 object-contain transition-transform group-hover:rotate-12"
+              className="w-10 h-10 object-contain transition-transform group-hover:rotate-12"
             />
-            <span className="font-sans-custom text-xs font-black uppercase tracking-widest text-[#CA292A]">
+            <span className="font-sans-custom text-sm font-black uppercase tracking-widest text-[#CA292A]">
               WesFest
             </span>
           </Link>
-          <div className="flex items-center gap-2 font-sans-custom text-[9px] font-bold uppercase text-[#CA292A]">
+          <div className="flex items-center gap-2 font-sans-custom text-[10px] font-bold uppercase text-[#CA292A]">
             <Link
               to="/"
-              className="opacity-40 hover:opacity-100 transition-opacity">
+              className="opacity-60 hover:opacity-100 transition-opacity hover:underline">
               Archive
             </Link>
-            <ChevronRight size={10} className="opacity-20" />
-            <span className="bg-[#CA292A] text-white px-3 py-1 rounded-sm">
+            <ChevronRight size={12} className="opacity-40" />
+            <span className="bg-[#CA292A] text-[#F0C6D4] px-4 py-1.5 border-2 border-[#CA292A] shadow-[2px_2px_0px_#8B1E1F]">
               The Feed
             </span>
           </div>
         </div>
       </div>
 
-      <main className="pt-32 md:pt-40 pb-20 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center">
+      <main className="pt-32 md:pt-44 pb-20 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center bg-[#F0C6D4] min-h-screen">
         {/* TIMETABLE SECTION */}
-        <section className="w-full mb-16 border-2 border-[#CA292A] bg-white p-6 md:p-8 shadow-[8px_8px_0px_#CA292A] relative overflow-hidden">
+        <section className="w-full mb-16 border-2 border-[#CA292A] bg-white bg-opacity-70 p-6 md:p-8 shadow-[12px_12px_0px_#CA292A] relative overflow-hidden">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
             <div className="text-center md:text-left">
-              <h3 className="font-serif-custom text-2xl text-[#CA292A] italic">
+              <p className="font-sans-custom text-[10px] font-black uppercase tracking-[0.5em] mb-2 text-[#CA292A] opacity-70">
+                The Program
+              </p>
+              <h3 className="font-serif-custom text-3xl md:text-4xl text-[#CA292A] italic">
                 Daily Itinerary
               </h3>
-              <p className="font-sans-custom text-[9px] font-black uppercase tracking-widest text-[#CA292A] opacity-60">
-                Please consult your watch
-              </p>
             </div>
-            <div className="flex gap-2">
-              {[1, 2, 3].map((d) => (
-                <button
-                  key={d}
-                  onClick={() => setActiveDay(d)}
-                  className={`px-5 py-2 border-2 border-[#CA292A] font-sans-custom text-[10px] font-black transition-all ${
-                    activeDay === d
-                      ? "bg-[#CA292A] text-white"
-                      : "bg-white text-[#CA292A] hover:bg-[#F0C6D4]"
-                  }`}>
-                  DAY 0{d}
-                </button>
-              ))}
+            <div className="flex gap-3">
+              {[1, 2, 3].map((d) => {
+                const dates = { 1: "29.07", 2: "30.07", 3: "31.07" };
+                return (
+                  <button
+                    key={d}
+                    onClick={() => setActiveDay(d)}
+                    className={`px-8 py-3 border-2 border-[#CA292A] font-sans-custom text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-200 ${
+                      activeDay === d
+                        ? "bg-[#CA292A] text-[#F0C6D4] translate-x-[4px] translate-y-[4px] shadow-[4px_4px_0px_#8B1E1F]"
+                        : "bg-white text-[#CA292A] shadow-[6px_6px_0px_#CA292A] hover:bg-[#F0C6D4]"
+                    }`}>
+                    {dates[d]}
+                  </button>
+                );
+              })}
             </div>
             <div className="flex flex-wrap gap-4 border-l-0 md:border-l-2 border-[#CA292A] border-dotted pl-0 md:pl-8 justify-center">
               {scheduleData[activeDay].map((item, idx) => (
@@ -265,12 +274,15 @@ export default function Feed() {
         </section>
 
         {/* --- GRID HEADER --- */}
-        <div className="w-full flex items-center justify-between mb-8 pb-4 border-b border-[#CA292A]/30">
+        <div className="w-full flex items-center justify-between mb-12 pb-6 border-b-2 border-[#CA292A]">
           <div className="flex items-center gap-4">
-            <div className="h-px bg-[#CA292A] w-12 hidden md:block"></div>
-            <span className="font-sans-custom text-[10px] font-black uppercase tracking-[0.2em] text-[#CA292A]">
+            <div className="h-0.5 bg-[#CA292A] w-16 hidden md:block"></div>
+            <p className="font-sans-custom text-[10px] font-black uppercase tracking-[0.5em] text-[#CA292A] opacity-70">
+              The Feed
+            </p>
+            <h2 className="font-serif-custom text-3xl md:text-4xl text-[#CA292A] italic">
               Wesfest Activity Feed
-            </span>
+            </h2>
           </div>
         </div>
 
@@ -279,9 +291,9 @@ export default function Feed() {
           {posts.map((post) => (
             <article
               key={post.id}
-              className="bg-white border-2 border-[#CA292A] shadow-[4px_4px_0px_rgba(202,41,42,0.3)] hover:shadow-[8px_8px_0px_#CA292A] hover:-translate-y-1 transition-all duration-300 flex flex-col">
+              className="bg-white border-2 border-[#CA292A] shadow-[6px_6px_0px_#CA292A] hover:shadow-[8px_8px_0px_#CA292A] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300 flex flex-col">
               {/* Post Header */}
-              <div className="p-2 border-b-2 border-[#F2E8D5] flex justify-between items-center bg-[#fdfbf7]">
+              <div className="p-3 border-b-2 border-[#CA292A] border-opacity-20 flex justify-between items-center bg-white">
                 <div className="flex items-center gap-2">
                   <div
                     className={`w-6 h-6 rounded-full border border-[#CA292A] flex items-center justify-center text-[9px] font-bold text-white`}
@@ -298,25 +310,43 @@ export default function Feed() {
                 />
               </div>
 
-              {/* Post Image (Color Block) */}
-              <div className="relative w-full aspect-square border-b border-[#CA292A] group overflow-hidden">
-                <img src={images.imagethree} alt="placehodler" />
+              {/* Post Image */}
+              <div className="relative w-full aspect-square border-b-2 border-[#CA292A] group overflow-hidden bg-[#F2E8D5]">
+                {post.image ? (
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    onError={(e) => {
+                      // Fallback to color block if image fails to load
+                      e.target.style.display = "none";
+                      e.target.parentElement.style.backgroundColor = post.color;
+                    }}
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full"
+                    style={{ backgroundColor: post.color }}
+                  />
+                )}
                 {/* Watermark Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none transform group-hover:scale-110 duration-700">
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none">
                   <img
                     src={logos.seal}
                     alt=""
-                    className="w-24 h-24 filter brightness-0"
+                    className="w-32 h-32 filter brightness-0 opacity-50"
                   />
                 </div>
               </div>
 
               {/* Action Bar */}
-              <div className="px-3 pt-3 flex justify-between items-center">
-                <div className="flex gap-3">
-                  <button onClick={() => handleLike(post.id)}>
+              <div className="px-4 pt-4 flex justify-between items-center">
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => handleLike(post.id)}
+                    className="hover:scale-110 transition-transform">
                     <Heart
-                      size={18}
+                      size={20}
                       className={`transition-colors ${
                         post.liked
                           ? "fill-[#CA292A] text-[#CA292A]"
@@ -324,24 +354,28 @@ export default function Feed() {
                       }`}
                     />
                   </button>
-                  <MessageCircle size={18} className="text-[#CA292A]" />
+                  <button className="hover:scale-110 transition-transform">
+                    <MessageCircle size={20} className="text-[#CA292A]" />
+                  </button>
                 </div>
-                <Bookmark size={18} className="text-[#CA292A]" />
+                <button className="hover:scale-110 transition-transform">
+                  <Bookmark size={20} className="text-[#CA292A]" />
+                </button>
               </div>
 
               {/* Content */}
-              <div className="px-3 pb-4 grow flex flex-col justify-end">
-                <p className="font-sans-custom text-[9px] font-black uppercase text-[#CA292A] mt-2 mb-1">
+              <div className="px-4 pb-5 grow flex flex-col justify-end">
+                <p className="font-sans-custom text-[10px] font-black uppercase text-[#CA292A] mb-2 opacity-70">
                   {post.likes} Signatures
                 </p>
-                <div className="space-y-1">
-                  <p className="font-serif-custom text-xs text-[#CA292A] leading-tight line-clamp-2">
-                    <span className="font-sans-custom text-[10px] font-black uppercase mr-1">
+                <div className="space-y-2">
+                  <p className="font-serif-custom text-sm text-[#CA292A] leading-tight line-clamp-2">
+                    <span className="font-sans-custom text-[11px] font-black uppercase mr-2">
                       {post.author}
                     </span>
                     {post.title}
                   </p>
-                  <p className="font-serif-custom text-[10px] text-gray-500 italic line-clamp-2">
+                  <p className="font-serif-custom text-[11px] text-[#CA292A] opacity-70 italic line-clamp-2">
                     "{post.desc}"
                   </p>
                 </div>
