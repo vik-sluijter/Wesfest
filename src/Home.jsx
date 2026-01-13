@@ -164,10 +164,10 @@ export default function Home() {
         },
       ],
       images: [
-        `${base}/workshop1/Poppen_Details.png`,
-        `${base}/workshop1/Poppen_Handelingen.png`,
-        `${base}/workshop1/Poppen_Resultaat.png`,
-        `${base}/workshop1/Poppen_Wideshot2.png`,
+        `${base}/workshop1/workshop1_1.png`,
+        `${base}/workshop1/workshop1_3.png`,
+        `${base}/workshop1/workshop1_2.png`,
+        `${base}/workshop1/workshop1_4.png`,
       ],
     },
     {
@@ -187,10 +187,10 @@ export default function Home() {
         },
       ],
       images: [
-        `${base}/workshop2/Verfijning_Miniatuur.png`,
-        `${base}/workshop2/Miniatuur_MetCamera.png`,
-        `${base}/workshop2/Autotje_Greenscreen.png`,
-        `${base}/workshop2/Gemini_Generated_Image_hhlrqvhhlrqvhhlr.png`,
+        `${base}/workshop2/workshop2_1.png`,
+        `${base}/workshop2/workshop2_2.png`,
+        `${base}/workshop2/workshop2_3.png`,
+        `${base}/workshop2/workshop2_4.png`,
       ],
     },
     {
@@ -210,8 +210,10 @@ export default function Home() {
         },
       ],
       images: [
-        `${base}/workshop3/Stopmotion_closeup.png`,
-        `${base}/workshop3/Stopmotion_Establishing.png`,
+        `${base}/workshop3/workshop3_1.png`,
+        `${base}/workshop3/workshop3_2.png`,
+        `${base}/workshop3/workshop3_3.png`,
+        `${base}/workshop3/workshop3_4.png`,
       ],
     },
     {
@@ -231,9 +233,10 @@ export default function Home() {
         },
       ],
       images: [
-        `${base}/workshop4/FoleyStudio_Closeup.png`,
-        `${base}/workshop4/Foleystudio_Closeup2.png`,
-        `${base}/workshop4/FoleyStudio.png`,
+        `${base}/workshop4/workshop4_1.png`,
+        `${base}/workshop4/workshop4_2.png`,
+        `${base}/workshop4/workshop4_3.png`,
+        `${base}/workshop4/workshop4_4.png`,
       ],
     },
     {
@@ -253,10 +256,10 @@ export default function Home() {
         },
       ],
       images: [
-        `${base}/workshop5/Filmmakingstudy_computers.png`,
-        `${base}/workshop5/Filmmakingstudy_Sets&Greenscreen.png`,
-        `${base}/workshop5/Filmmakingstudy_Sets.png`,
-        `${base}/workshop5/Filmmakingstudy_Sets2.png`,
+        `${base}/workshop5/workshop5_1.png`,
+        `${base}/workshop5/workshop5_2.png`,
+        `${base}/workshop5/workshop5_3.png`,
+        `${base}/workshop5/workshop5_4.png`,
       ],
     },
   ];
@@ -328,20 +331,20 @@ export default function Home() {
         className="py-24 bg-[#F0C6D4] paper-texture border-b-2 border-[#CA292A]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h3 className="font-serif-custom text-4xl text-[#CA292A] italic mb-10">
+            <h3 className="font-serif-custom text-2xl md:text-4xl text-[#CA292A] italic mb-10">
               The Daily Program
             </h3>
-            <div className="flex justify-center items-center gap-6">
+            <div className="flex justify-center items-center gap-3 sm:gap-6">
               {[1, 2, 3].map((d) => {
                 const dates = { 1: "29.07", 2: "30.07", 3: "31.07" };
                 return (
                   <button
                     key={d}
                     onClick={() => setActiveDay(d)}
-                    className={`relative px-10 py-4 font-sans-custom text-[11px] font-black uppercase tracking-[0.2em] border-2 border-[#CA292A] transition-all duration-200 ${
+                    className={`relative px-4 sm:px-10 py-2 sm:py-4 font-sans-custom text-[9px] sm:text-[11px] font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] border-2 border-[#CA292A] transition-all duration-200 ${
                       activeDay === d
-                        ? "bg-[#CA292A] text-[#F0C6D4] translate-x-[4px] translate-y-[4px]"
-                        : "bg-white text-[#CA292A] shadow-[6px_6px_0px_#CA292A] hover:bg-[#F0C6D4]"
+                        ? "bg-[#CA292A] text-[#F0C6D4] translate-x-[2px] sm:translate-x-[4px] translate-y-[2px] sm:translate-y-[4px]"
+                        : "bg-white text-[#CA292A] shadow-[4px_4px_0px_#CA292A] hover:bg-[#F0C6D4]"
                     }`}>
                     {dates[d]}
                   </button>
@@ -353,19 +356,19 @@ export default function Home() {
             {scheduleData[activeDay].map((e, i) => (
               <div
                 key={i}
-                className="flex items-center p-8 gap-8 hover:bg-white transition-all duration-300 group cursor-default">
-                <span className="font-sans-custom font-bold w-30 shrink-0 text-[#CA292A]">
+                className="flex flex-col sm:flex-row sm:items-center p-2 sm:p-8 gap-2 sm:gap-8 hover:bg-white transition-all duration-300 group cursor-default">
+                <span className="font-sans-custom font-bold text-sm sm:text-base w-full sm:w-30 shrink-0 text-[#CA292A]">
                   {e.time}
                 </span>
-                <div className="flex items-center gap-6 flex-grow">
-                  <div className="p-3 bg-[#CA292A] text-[#F0C6D4] rounded-full shrink-0 group-hover:rotate-12 transition-transform">
+                <div className="flex items-center gap-4 sm:gap-6 flex-grow">
+                  <div className="p-2 sm:p-3 bg-[#CA292A] text-[#F0C6D4] rounded-full shrink-0 group-hover:rotate-12 transition-transform">
                     {e.icon}
                   </div>
-                  <h4 className="font-serif-custom text-xl md:text-2xl text-[#CA292A]">
+                  <h4 className="font-serif-custom text-lg sm:text-xl md:text-2xl text-[#CA292A]">
                     {e.title}
                   </h4>
                 </div>
-                <span className="font-sans-custom text-[10px] uppercase font-bold opacity-40 text-[#CA292A]">
+                <span className="font-sans-custom text-[9px] sm:text-[10px] uppercase font-bold opacity-40 text-[#CA292A] sm:text-right">
                   {e.loc}
                 </span>
               </div>
@@ -386,28 +389,28 @@ export default function Home() {
             key={floor.id}
             className={`${floor.theme} paper-texture p-3 border-b-2 border-[#CA292A] relative overflow-hidden`}>
             <div className="grid lg:grid-cols-2 w-full min-h-150">
-              <div className="p-12 lg:p-24 flex flex-col justify-center border-opacity-20">
+              <div className="p-6 lg:p-24 flex flex-col justify-center border-opacity-20">
                 <p className="font-sans-custom text-xs font-black uppercase tracking-[0.5em] mb-4 opacity-60">
                   Archive {floor.id}
                 </p>
-                <h2 className="font-serif-custom text-5xl mb-6 text-[#CA292A] leading-tight">
+                <h2 className="font-serif-custom text-3xl md:text-5xl mb-6 text-[#CA292A] leading-tight">
                   {floor.name}
                 </h2>
-                <p className="font-serif-custom italic text-xl mb-12 opacity-80">
+                <p className="font-serif-custom italic text-lg md:text-xl mb-12 opacity-80">
                   {floor.subtitle}
                 </p>
                 <div className="space-y-6">
                   {floor.workshops.map((ws, i) => (
                     <div
                       key={i}
-                      className={`p-8 border-2 ${floor.cardStyle} rounded-sm shadow-sm hover:shadow-lg transition-all duration-500 group/card`}>
-                      <h4 className="font-serif-custom text-2xl mb-3">
+                      className={`p-4 sm:p-8 border-2 ${floor.cardStyle} rounded-sm shadow-sm hover:shadow-lg transition-all duration-500 group/card`}>
+                      <h4 className="font-serif-custom text-lg sm:text-xl md:text-2xl mb-3">
                         {ws.title}
                       </h4>
                       <p className="font-sans-custom text-[9px] font-bold uppercase tracking-widest mb-3 opacity-70">
                         Focus: {ws.topics}
                       </p>
-                      <p className="font-sans-custom text-sm mb-6 leading-relaxed opacity-90">
+                      <p className="font-sans-custom text-xs md:text-sm mb-6 leading-relaxed opacity-90">
                         {ws.description}
                       </p>
                       <div className="flex justify-between items-center pt-4 border-t border-[#CA292A] border-opacity-20 text-[9px] font-black uppercase tracking-widest">
@@ -426,26 +429,29 @@ export default function Home() {
               <div className="w-full h-full lg:max-h-220">
                 <div
                   className={`grid h-full w-full ${
-                    count === 4 ? "grid-cols-6" : "grid-cols-2"
+                    count === 4
+                      ? "grid-cols-2 md:grid-cols-6"
+                      : "grid-cols-1 md:grid-cols-2"
                   }`}>
                   {images.map((item, ci) => {
                     let spanClass = "";
 
-                    // LOGIC A: EXACTLY 4 PHOTOS (Your old layout)
+                    // LOGIC A: EXACTLY 4 PHOTOS (Responsive layout)
                     if (count === 4) {
-                      if (ci === 0) spanClass = "col-span-4";
-                      else if (ci === 1) spanClass = "col-span-2";
-                      else if (ci === 2) spanClass = "col-span-3";
-                      else spanClass = "col-span-3";
+                      if (ci === 0) spanClass = "col-span-2 md:col-span-4";
+                      else if (ci === 1) spanClass = "col-span-2 md:col-span-2";
+                      else if (ci === 2) spanClass = "col-span-1 md:col-span-3";
+                      else spanClass = "col-span-1 md:col-span-3";
                     }
-                    // LOGIC B: OTHER AMOUNT (Flexible layout)
+                    // LOGIC B: OTHER AMOUNT (Responsive layout)
                     else {
                       if (count === 1) {
                         // 1 photo: Fills everything
-                        spanClass = "col-span-2 row-span-2";
+                        spanClass =
+                          "col-span-1 md:col-span-2 row-span-2 md:row-span-2";
                       } else if (count === 3 && ci === 0) {
                         // 3 photos: First is wide, other two next to/below
-                        spanClass = "col-span-2";
+                        spanClass = "col-span-1 md:col-span-2";
                       } else {
                         // Default behavior (e.g. with 2 photos): 50/50
                         spanClass = "col-span-1";
@@ -485,7 +491,7 @@ export default function Home() {
           <p className="font-sans-custom text-[10px] font-black uppercase tracking-[0.5em] mb-4 text-[#CA292A]">
             The Admission Bureau
           </p>
-          <h2 className="font-serif-custom text-6xl text-[#CA292A] mb-20 italic">
+          <h2 className="font-serif-custom text-4xl md:text-6xl text-[#CA292A] mb-20 italic">
             Acquire Entry
           </h2>
 

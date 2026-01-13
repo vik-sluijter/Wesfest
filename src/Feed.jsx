@@ -29,18 +29,26 @@ export default function Feed() {
 
   // Use actual workshop images from public folder
   const workshopImages = [
-    `${base}workshop1/Poppen_Details.png`,
-    `${base}workshop1/Poppen_Resultaat.png`,
-    `${base}workshop1/Poppen_Wideshot.png`,
-    `${base}workshop2/Verfijning_Miniatuur.png`,
-    `${base}workshop2/Miniatuur_MetCamera.png`,
-    `${base}workshop2/Autotje_Greenscreen.png`,
-    `${base}workshop3/Stopmotion_closeup.png`,
-    `${base}workshop3/Stopmotion_Establishing.png`,
-    `${base}workshop4/FoleyStudio_Closeup.png`,
-    `${base}workshop4/FoleyStudio.png`,
-    `${base}workshop5/Filmmakingstudy_computers.png`,
-    `${base}workshop5/Filmmakingstudy_Sets.png`,
+    `${base}workshop1/workshop1_1.png`,
+    `${base}workshop1/workshop1_2.png`,
+    `${base}workshop1/workshop1_3.png`,
+    `${base}workshop1/workshop1_4.png`,
+    `${base}workshop2/workshop2_1.png`,
+    `${base}workshop2/workshop2_2.png`,
+    `${base}workshop2/workshop2_3.png`,
+    `${base}workshop2/workshop2_4.png`,
+    `${base}workshop3/workshop3_1.png`,
+    `${base}workshop3/workshop3_2.png`,
+    `${base}workshop3/workshop3_3.png`,
+    `${base}workshop3/workshop3_4.png`,
+    `${base}workshop4/workshop4_1.png`,
+    `${base}workshop4/workshop4_2.png`,
+    `${base}workshop4/workshop4_3.png`,
+    `${base}workshop4/workshop4_4.png`,
+    `${base}workshop5/workshop5_1.png`,
+    `${base}workshop5/workshop5_2.png`,
+    `${base}workshop5/workshop5_3.png`,
+    `${base}workshop5/workshop5_4.png`,
   ];
 
   // --- DATA GENERATION ---
@@ -84,27 +92,19 @@ export default function Feed() {
     },
   ];
 
-  // Function to generate a static list of 24 items
+  // Function to generate a static list of 16 items with unique images
   const generateFeed = () => {
+    const shuffledImages = [...workshopImages].sort(() => Math.random() - 0.5);
     let feed = [];
-    // Loop 4 times to create 24 items (6 templates * 4)
-    for (let i = 0; i < 4; i++) {
-      const batch = baseTemplates.map((template, index) => {
-        // Randomly select a workshop image
-        const randomImage =
-          workshopImages[Math.floor(Math.random() * workshopImages.length)];
-        return {
-          ...template,
-          // Create a unique ID based on the batch and index
-          id: i * 6 + index,
-          // Randomize likes slightly so they don't look identical
-          likes: Math.floor(Math.random() * 500) + 40,
-          liked: false,
-          // Assign the random image
-          image: randomImage,
-        };
+    for (let i = 0; i < shuffledImages.length; i++) {
+      const template = baseTemplates[i % baseTemplates.length];
+      feed.push({
+        ...template,
+        id: i,
+        likes: Math.floor(Math.random() * 500) + 40,
+        liked: false,
+        image: shuffledImages[i],
       });
-      feed = [...feed, ...batch];
     }
     return feed;
   };
